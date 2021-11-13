@@ -10,7 +10,7 @@ RUN apt-get update \
     && pip install psycopg2
 
 # Install requirements
-COPY ./backend/requirements.txt requirements.txt
+COPY ./requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 COPY ./docker/django/entrypoint.sh /entrypoint.sh
@@ -31,6 +31,6 @@ RUN chmod +x /start.sh
 
 COPY .env.staging /.env.staging
 
-COPY ./backend .
+COPY . .
 
 ENTRYPOINT ["/entrypoint.sh"]

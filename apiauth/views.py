@@ -1,10 +1,9 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from apiauth.models import CustomUser
-
 from .serializers import UserSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class BlackListTokenView(APIView):
@@ -14,8 +13,7 @@ class BlackListTokenView(APIView):
             token = RefreshToken(refresh_token)
             token.blacklist()
             return Response("Success")
-        except Exception as e:
-            print(e)
+        except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 

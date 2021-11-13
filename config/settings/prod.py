@@ -3,7 +3,7 @@ import os
 from datetime import timedelta
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-q4xq#p7x1fyg#(qfd2$z)(indidp1om4ge(*$ceh057n=y*iwq"
+SECRET_KEY = os.getenv('SECRET_KEY', "django-insecure-q4xq#p7x1fyg#(qfd2$z)(indidp1om4ge(*$ceh057n=y*iwq")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

@@ -23,7 +23,7 @@ services:
     env_file:
       - .env.staging
     volumes:
-      - ./backend:/backend
+      - .:/backend
       - knighthack_media_volume:/media
     command: /start.sh
     depends_on:
