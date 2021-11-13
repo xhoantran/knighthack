@@ -25,9 +25,9 @@ export const UserSettings = () => {
 				onClick={handleClick}
 				variant="text"
 				sx={{
-					width: "100%",
 					color: "black",
 					justifyContent: "flex-start",
+					flex: "1",
 				}}
 			>
 				<Typography variant="h5">Username</Typography>
