@@ -8,7 +8,7 @@ SECRET_KEY = "django-insecure-q4xq#p7x1fyg#(qfd2$z)(indidp1om4ge(*$ceh057n=y*iwq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS", "*")]
+ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS", "*"), "https://knighthack.herokuapp.com/"]
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
