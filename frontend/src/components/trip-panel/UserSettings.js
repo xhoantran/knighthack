@@ -24,10 +24,10 @@ export const UserSettings = () => {
 			<Button
 				onClick={handleClick}
 				variant="text"
+				fullWidth={true}
 				sx={{
-					color: "black",
 					justifyContent: "flex-start",
-					flex: "1",
+					color: "black",
 				}}
 			>
 				<Typography variant="h5">Username</Typography>
@@ -43,7 +43,7 @@ export const UserSettings = () => {
 						minWidth: 300,
 						overflow: "visible",
 						filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-						mt: 1.5,
+						mt: 0,
 						"& .MuiAvatar-root": {
 							width: 32,
 							height: 32,
