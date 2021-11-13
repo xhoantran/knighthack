@@ -7,10 +7,8 @@ export const CityHeading = () => {
         component="span"
         sx={{
           fontWeight: "medium",
-          fontSize: "1.2rem",
-          mt: 3,
+          fontSize: "1.3rem",
           mr: 4,
-          mb: 1,
           textTransform: "uppercase",
         }}
       >
