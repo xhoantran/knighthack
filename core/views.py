@@ -10,9 +10,6 @@ class TripListView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Trip.objects.filter(user=self.request.user)
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
