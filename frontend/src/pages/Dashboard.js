@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import { TripPanel } from "../components/trip-panel/TripPanel";
 import { PlacePanel } from "../components/place-panel/PlacePanel";
+import { PlaceDetailPanel } from "../components/place-detail-panel/PlaceDetailPanel";
 
 function Dashboard(props) {
   return (
@@ -40,7 +41,7 @@ function Dashboard(props) {
             height: "100vh",
           }}
         >
-          Place details
+          <PlaceDetailPanel />
         </Grid>
       </Grid>
     </div>
