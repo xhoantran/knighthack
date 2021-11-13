@@ -24,3 +24,4 @@ export const PlacePanel = ({ places, setPlaces }) => {
       {places.map(place => <PlaceCard key={place.id} name={place.name} from={place.from} to={place.to} type={place.type}/>)}
     </>
   );
+}
