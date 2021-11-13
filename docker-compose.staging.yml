@@ -24,7 +24,7 @@ services:
       - .env.staging
     volumes:
       - ./backend:/backend
-      - knighthack_media_volume:/backend/mediafiles
+      - knighthack_media_volume:/backend/media
     command: /start.sh
     depends_on:
       - postgres
