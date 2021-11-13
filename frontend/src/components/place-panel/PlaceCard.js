@@ -9,7 +9,7 @@ export const PlaceCard = () => {
         alignItems: "center",
         px: 3,
         py: 1.5,
-        my: 1,
+        my: 2,
         ml: 4,
         cursor: "pointer",
       }}

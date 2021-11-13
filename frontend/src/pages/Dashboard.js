@@ -3,7 +3,6 @@ import React from "react";
 import { PlaceDetailPanel } from "../components/place-detail-panel/PlaceDetailPanel";
 import { PlacePanel } from "../components/place-panel/PlacePanel";
 import { TripPanel } from "../components/trip-panel/TripPanel";
-import { Container } from "@mui/material";
 
 const Dashboard = () => {
   return (
@@ -12,9 +11,9 @@ const Dashboard = () => {
         item
         xs={2}
         sx={{
-          border: "2px solid blue",
+          borderRight: "2px solid #E2E8F0",
           boxSizing: "border-box",
-          p: 2,
+          p: 4,
         }}
       >
         <TripPanel />
@@ -23,10 +22,10 @@ const Dashboard = () => {
         item
         xs={4}
         sx={{
-          border: "2px solid blue",
+          borderRight: "2px solid #E2E8F0",
           boxSizing: "border-box",
-          backgroundColor: "gray",
-          p: 2,
+          py: 4,
+          px: 6,
         }}
       >
         <PlacePanel />
@@ -35,9 +34,8 @@ const Dashboard = () => {
         item
         xs={6}
         sx={{
-          border: "2px solid blue",
-          boxSizing: "border-box",
-          p: 2,
+          px: 14,
+          py: 4,
         }}
       >
         <PlaceDetailPanel />

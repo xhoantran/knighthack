@@ -3,7 +3,7 @@ import { Chip, Typography, Box } from "@mui/material";
 export const PlaceDetailView = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Box sx={{ backgroundColor: "red", height: "16rem" }}></Box>
+      <Box sx={{ backgroundColor: "red", height: "16rem", mb: 8 }}></Box>
       <Typography
         sx={{
           fontWeight: "medium",
