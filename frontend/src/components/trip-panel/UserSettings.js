@@ -41,6 +41,8 @@ export const UserSettings = () => {
 					elevation: 0,
 					sx: {
 						minWidth: 300,
+						ml: 2,
+						mt: 0.5,
 						overflow: "visible",
 						filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
 						"& .MuiAvatar-root": {
@@ -54,7 +56,7 @@ export const UserSettings = () => {
 							display: "block",
 							position: "absolute",
 							top: 0,
-							left: 10,
+							left: 20,
 							width: 10,
 							height: 10,
 							bgcolor: "background.paper",
