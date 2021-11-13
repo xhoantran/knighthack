@@ -1,20 +1,22 @@
 import { Typography, Box } from "@mui/material";
 
-export const CityHeading = () => {
+export const CityHeading = ({ city, from, to }) => {
   return (
     <Box>
       <Typography
         component="span"
         sx={{
           fontWeight: "medium",
-          fontSize: "1.3rem",
+          fontSize: "1.25rem",
           mr: 4,
           textTransform: "uppercase",
         }}
       >
-        City
+        {city}
       </Typography>
-      [FromDate] - [ToDate]
+      <Box component="span" sx={{ fontSize: "1.25rem", color: "#718096" }}>
+        {from} - {to}
+      </Box>
     </Box>
   );
 };

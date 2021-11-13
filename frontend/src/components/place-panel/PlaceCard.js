@@ -1,11 +1,10 @@
 import { Chip, Paper, Typography, Box } from "@mui/material";
 
-export const PlaceCard = () => {
+export const PlaceCard = ({ name, time, type }) => {
   return (
     <Paper
       sx={{
         display: "flex",
-        justifyContent: "space-between",
         alignItems: "center",
         px: 3,
         py: 1.5,
@@ -14,17 +13,20 @@ export const PlaceCard = () => {
         cursor: "pointer",
       }}
     >
-      <Typography sx={{ pr: 3 }}>
-        Date{" "}
-        <Box
-          component="span"
-          sx={{ fontWeight: "medium", textTransform: "uppercase", ml: 4 }}
-        >
-          Name
+      <Box component="span" sx={{ flexGrow: 1 }}>
+        {time}
+        <Box component="span" sx={{ mx: 1, color: "#CBD5E0" }}>
+          |
         </Box>
-      </Typography>
+        {name}
+      </Box>
 
-      <Chip label="housing" color="info" size="small" />
+      <Chip
+        label={type}
+        color="primary"
+        sx={{ textTransform: "uppercase" }}
+        size="small"
+      />
     </Paper>
   );
 };
