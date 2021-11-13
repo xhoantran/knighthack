@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   postgres:
-    container_name: hackathon_postgres_server
+    container_name: knighthack_postgres_server
     image: postgres
     restart: always
     ports:
@@ -12,7 +12,7 @@ services:
       - .env.production
 
   backend:
-    container_name: hackathon_django_server
+    container_name: knighthack_django_server
     build:
       context: .
       dockerfile: ./docker/django/production/Dockerfile
@@ -30,7 +30,7 @@ services:
 
   # React
   frontend:
-    container_name: hackathon_dev_next_server
+    container_name: knighthack_dev_next_server
     build:
       context: .
       dockerfile: ./docker/node/production/Dockerfile
@@ -55,7 +55,7 @@ services:
 
   # Postgres Admin
   # pgadmin:
-  #   container_name: hackathon_pgadmin_server
+  #   container_name: knighthack_pgadmin_server
   #   image: dpage/pgadmin4
   #   restart: always
   #   environment:

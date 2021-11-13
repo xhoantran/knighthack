@@ -37,6 +37,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     "corsheaders",
+    "apiauth"
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -119,9 +120,13 @@ MEDIA_URL = "/mediafiles/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+AUTH_USER_MODEL = "apiauth.CustomUser"
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "apiauth.authentication.DrfAuthBackend",
+
     ),
     "DEFAULT_FILTER_BACKENDS": (
         "rest_framework_filters.backends.RestFrameworkFilterBackend",

@@ -2,19 +2,19 @@ version: "3.8"
 services:
   # Postgres Database
   postgres:
-    container_name: hackathon_dev_postgres_server
+    container_name: knighthack_dev_postgres_server
     image: postgres
     restart: always
     ports:
       - 5432:5432
     volumes:
-      - hackathon_data_dev:/var/lib/postgresql/data
+      - knighthack_data_dev:/var/lib/postgresql/data
     env_file:
       - .env.staging
 
   # Django App
   backend:
-    container_name: hackathon_dev_django_server
+    container_name: knighthack_dev_django_server
     build:
       context: .
       dockerfile: ./docker/django/development/Dockerfile
@@ -24,7 +24,7 @@ services:
       - .env.staging
     volumes:
       - ./backend:/backend
-      - hackathon_media_volume:/backend/mediafiles
+      - knighthack_media_volume:/backend/mediafiles
     command: /start.sh
     depends_on:
       - postgres
@@ -37,7 +37,7 @@ services:
   #   depends_on:
   #     - backend
   #   volumes:
-  #     - hackathon_media_volume:/backend/mediafiles
+  #     - knighthack_media_volume:/backend/mediafiles
 
   # celery:
   #   <<: *app
@@ -58,5 +58,5 @@ services:
   #   command: /start-celerybeat
 
 volumes:
-  hackathon_data_dev:
-  hackathon_media_volume:
+  knighthack_data_dev:
+  knighthack_media_volume:
