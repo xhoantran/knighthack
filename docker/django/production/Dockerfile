@@ -4,7 +4,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 
 RUN mkdir /backend
 WORKDIR /backend
-COPY ./backend .
+COPY ./backend ./backend
 
 RUN apt-get update \
     && apt-get -y install libpq-dev python3-dev gcc \
