@@ -5,23 +5,16 @@ from rest_framework import serializers
 class HousingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Housing
-        fields = ('id', 'name', 'street', 'city', 'state', 'zipcode')
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'street', 'city', 'state', 'zipcode', 'country')
 
 
 class PlaceSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(required=False)
     class Meta:
         model = Place
-        fields = ('id', 'name', 'street', 'city', 'state', 'zipcode', 'category')
+        fields = ('id', 'name', 'category', 'street', 'city', 'state', 'zipcode', 'country')
         extra_kwargs = {
-            'start_date': {'required': False},
-            'end_date': {'required': False},
+            'from': {'required': False},
+            'to': {'required': False},
         }
 
 
@@ -44,14 +37,39 @@ class TripSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         trip = Trip.objects.create(user=user, **validated_data)
         for location in locations:
-            name = location.pop('name')
-            location_obj = Location.objects.create(trip=trip, name=name)
+            location_name = location.pop('name')
+            location_obj = Location.objects.create(trip=trip, name=location_name)
+
             housing = location.pop('housing', None)
             if housing is not None:
-                Housing.objects.create(location=location_obj, **housing)
+                housing_name = housing.pop('name')
+                housing_obj = Housing.objects.create(location=location_obj, name=housing_name)
+                housing_obj.save()
+
             places = location.pop('places', [])
             for place in places:
-                category = place.pop('category', None)
-                category_obj, _ = Category.objects.get_or_create(name=category['name'])
-                Place.objects.create(location=location_obj, category=category_obj, **place)
+                Place.objects.create(location=location_obj, **place)
         return trip
+
+
+    def update(self, instance, validated_data):
+        locations = validated_data.pop('locations', instance.locations)
+        instance.name = validated_data.get('name', instance.name)
+        instance.save()
+        for location in locations:
+            location_name = location.pop('name')
+            location_obj = Location.objects.get(trip=instance, name=location_name)
+            location_obj.name = location_name
+            location_obj.save()
+
+            housing = location.pop('housing', location.housing)
+            if housing:
+                housing_name = housing.pop('name', housing.name)
+                housing_obj = Housing.objects.get(location=location_obj, name=housing_name)
+                housing_obj.name = housing_name
+                housing_obj.save()
+
+            places = location.pop('places', location.places)
+            for place in places:
+                place_obj = Place.objects.get(location=location_obj, **place)
+        return instance

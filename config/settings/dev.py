@@ -1,5 +1,4 @@
 from datetime import timedelta
-import dj_database_url
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-q4xq#p7x1fyg#(qfd2$z)(indidp1om4ge(*$ceh057n=y*iwq"
@@ -30,10 +29,6 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-DATABASES['default']['CONN_MAX_AGE'] = 500
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",

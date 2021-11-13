@@ -13,8 +13,8 @@ class BlackListTokenView(APIView):
             token = RefreshToken(refresh_token)
             token.blacklist()
             return Response("Success")
-        except Exception:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(data={"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CreateUserView(generics.CreateAPIView):
