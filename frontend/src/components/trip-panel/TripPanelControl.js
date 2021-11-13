@@ -1,7 +1,18 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { UserSettings } from "./UserSettings";
+import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
 
 export const TripPanelControl = () => {
-  return (
-    <Box sx={{ backgroundColor: "red", height: "5rem" }}>TripPanelControl</Box>
-  );
+	return (
+		<Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+			<UserSettings />
+			<Button
+				size="small"
+				variant="contained"
+				startIcon={<AddCircleSharpIcon />}
+			>
+				New Trip
+			</Button>
+		</Box>
+	);
 };
