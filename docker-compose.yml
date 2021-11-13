@@ -24,20 +24,10 @@ services:
       - .env.staging
     volumes:
       - ./backend:/backend
-      - knighthack_media_volume:/backend/media
+      - knighthack_media_volume:/media
     command: /start.sh
     depends_on:
       - postgres
-
-  # Nginx
-  # nginx:
-  #   build: ./docker/nginx/development
-  #   ports:
-  #     - 80:8080
-  #   depends_on:
-  #     - backend
-  #   volumes:
-  #     - knighthack_media_volume:/backend/mediafiles
 
   # celery:
   #   <<: *app
