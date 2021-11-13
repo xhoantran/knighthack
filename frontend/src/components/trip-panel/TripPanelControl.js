@@ -4,7 +4,7 @@ import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
 
 export const TripPanelControl = (props) => {
 	return (
-		<Box sx={{ alignItems: "center" }}>
+		<Box>
 			<UserSettings />
 			<Button
 				onClick={props.addTrip}
