@@ -32,3 +32,4 @@ RUN chmod +x /start.sh
 
 
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/start.sh"]
