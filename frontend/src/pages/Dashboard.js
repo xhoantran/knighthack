@@ -1,51 +1,48 @@
-import React from "react";
 import Grid from "@mui/material/Grid";
-import { TripPanel } from "../components/trip-panel/TripPanel";
-import { PlacePanel } from "../components/place-panel/PlacePanel";
+import React from "react";
 import { PlaceDetailPanel } from "../components/place-detail-panel/PlaceDetailPanel";
+import { PlacePanel } from "../components/place-panel/PlacePanel";
+import { TripPanel } from "../components/trip-panel/TripPanel";
 
-function Dashboard(props) {
+const Dashboard = () => {
   return (
-    <div>
-      <Grid container direction="row">
-        <Grid
-          item
-          xs={6}
-          md={3}
-          direction="column"
-          sx={{ padding: "1rem", height: "100vh" }}
-        >
-          <TripPanel />
-        </Grid>
-        <Grid
-          item
-          xs={6}
-          md={4}
-          sx={{
-            padding: "1rem",
-            background: "grey",
-            color: "white",
-            height: "100vh",
-          }}
-        >
-          <PlacePanel />
-        </Grid>
-        <Grid
-          item
-          xs={6}
-          md={5}
-          sx={{
-            padding: "1rem",
-            background: "black",
-            color: "white",
-            height: "100vh",
-          }}
-        >
-          <PlaceDetailPanel />
-        </Grid>
+    <Grid container direction="row" sx={{ height: "100vh" }}>
+      <Grid
+        item
+        xs={2}
+        sx={{
+          border: "2px solid blue",
+          boxSizing: "border-box",
+          p: 2,
+        }}
+      >
+        <TripPanel />
       </Grid>
-    </div>
+      <Grid
+        item
+        xs={4}
+        sx={{
+          border: "2px solid blue",
+          boxSizing: "border-box",
+          backgroundColor: "gray",
+          p: 2,
+        }}
+      >
+        <PlacePanel />
+      </Grid>
+      <Grid
+        item
+        xs={6}
+        sx={{
+          border: "2px solid blue",
+          boxSizing: "border-box",
+          p: 2,
+        }}
+      >
+        <PlaceDetailPanel />
+      </Grid>
+    </Grid>
   );
-}
+};
 
 export default Dashboard;
