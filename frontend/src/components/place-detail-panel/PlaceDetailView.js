@@ -8,7 +8,6 @@ export const PlaceDetailView = () => {
         sx={{
           fontWeight: "medium",
           fontSize: "2rem",
-          mt: 2,
           textTransform: "uppercase",
         }}
       >
