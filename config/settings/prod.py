@@ -1,3 +1,4 @@
+import dj_database_url
 import os
 from datetime import timedelta
 
@@ -21,6 +22,8 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
