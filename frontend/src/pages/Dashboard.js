@@ -3,6 +3,7 @@ import React from "react";
 import { PlaceDetailPanel } from "../components/place-detail-panel/PlaceDetailPanel";
 import { PlacePanel } from "../components/place-panel/PlacePanel";
 import { TripPanel } from "../components/trip-panel/TripPanel";
+import { Container } from "@mui/material";
 
 const Dashboard = () => {
   return (
