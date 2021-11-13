@@ -8,7 +8,7 @@ export const TripCard = () => {
         justifyContent: "space-between",
         px: 3,
         py: 1.5,
-        my: 1,
+        my: 2,
         cursor: "pointer",
       }}
     >
