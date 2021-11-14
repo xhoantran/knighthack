@@ -13,8 +13,8 @@ class PlaceSerializer(serializers.ModelSerializer):
         model = Place
         fields = ('id', 'name', 'category', 'street', 'city', 'state', 'zipcode', 'country')
         extra_kwargs = {
-            'from': {'required': False},
-            'to': {'required': False},
+            'start_date': {'required': False},
+            'end_date': {'required': False},
         }
 
 
@@ -24,6 +24,12 @@ class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = ('id', 'name', 'housing', 'places')
+
+
+class TripNameSerializer(serializers.ModelSerializer): 
+    class Meta:
+        model = Trip
+        fields = ('id', 'name')
 
 
 class TripSerializer(serializers.ModelSerializer): 
@@ -37,16 +43,14 @@ class TripSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         trip = Trip.objects.create(user=user, **validated_data)
         for location in locations:
-            location_name = location.pop('name')
-            location_obj = Location.objects.create(trip=trip, name=location_name)
-
-            housing = location.pop('housing', None)
-            if housing is not None:
-                housing_name = housing.pop('name')
-                housing_obj = Housing.objects.create(location=location_obj, name=housing_name)
-                housing_obj.save()
-
             places = location.pop('places', [])
+            housing = location.pop('housing', None)
+
+            location_obj = Location.objects.create(trip=trip, **location)
+            if housing is not None:
+                housing_obj = Housing.objects.create(**housing)
+                location_obj.housing = housing_obj
+                location_obj.save()
             for place in places:
                 Place.objects.create(location=location_obj, **place)
         return trip
@@ -54,22 +58,13 @@ class TripSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         locations = validated_data.pop('locations', instance.locations)
-        instance.name = validated_data.get('name', instance.name)
-        instance.save()
         for location in locations:
-            location_name = location.pop('name')
-            location_obj = Location.objects.get(trip=instance, name=location_name)
-            location_obj.name = location_name
-            location_obj.save()
-
-            housing = location.pop('housing', location.housing)
-            if housing:
-                housing_name = housing.pop('name', housing.name)
-                housing_obj = Housing.objects.get(location=location_obj, name=housing_name)
-                housing_obj.name = housing_name
-                housing_obj.save()
-
             places = location.pop('places', location.places)
+            housing = location.pop('housing', location.housing)
+            location_obj = Location.objects.get(id=location.id)
+            housing_obj, _ = Housing.objects.get_or_create(**housing)
+            location_obj.housing = housing_obj
+            location_obj.save()
             for place in places:
-                place_obj = Place.objects.get(location=location_obj, **place)
+                Place.objects.get_or_create(location=location_obj, **place)
         return instance

@@ -4,7 +4,15 @@ from .models import *
 from .permissions import *
 
 
-class TripListView(generics.ListCreateAPIView):
+class TripListView(generics.ListAPIView):
+    queryset = Trip.objects.all()
+    serializer_class = TripNameSerializer
+    permission_classes = (IsTripOwner,)
+    def get_queryset(self):
+        return Trip.objects.filter(user=self.request.user)
+
+
+class TripCreateView(generics.CreateAPIView):
     permission_classes = [IsTripOwner]
     serializer_class = TripSerializer
     def get_queryset(self):
