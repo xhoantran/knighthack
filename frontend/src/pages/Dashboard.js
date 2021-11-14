@@ -68,12 +68,20 @@ const Dashboard = () => {
 
   const selectTrip = (trip) => {
     setSelectedTrip(trip);
+<<<<<<< HEAD
     // console.log(trip);
+=======
+    console.log(trip);
+>>>>>>> 4a0dc8f785b0f7f920a9cc9328a6d435aeca4cf0
   };
 
   const selectPlace = (place) => {
     setSelectedPlace(place);
+<<<<<<< HEAD
     // console.log(place);
+=======
+    console.log(place);
+>>>>>>> 4a0dc8f785b0f7f920a9cc9328a6d435aeca4cf0
   };
 
   const createTrip = () => {
