@@ -48,7 +48,7 @@ axiosBaseInstance.interceptors.response.use(
       error.response.statusText === "Unauthorized" &&
       originalRequest.url === "api-auth/token/refresh/"
     ) {
-      window.location.href = "/login/";
+      window.location.href = "/";
       return Promise.reject(error);
     }
 
@@ -80,11 +80,11 @@ axiosBaseInstance.interceptors.response.use(
             });
         } else {
           console.log("Refresh token is expired", tokenParts.exp, now);
-          window.location.href = "/login/";
+          window.location.href = "/";
         }
       } else {
         console.log("Refresh token not available.");
-        window.location.href = "/login/";
+        window.location.href = "/";
       }
     }
 
@@ -95,7 +95,7 @@ axiosBaseInstance.interceptors.response.use(
         "You do not have permission to perform this action."
     ) {
       // No permission for this view
-      window.location.href = "/login/";
+      window.location.href = "/";
     }
 
     return Promise.reject(error);
