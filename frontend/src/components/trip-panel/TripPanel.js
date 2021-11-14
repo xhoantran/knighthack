@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 import { TripCard } from "./TripCard";
 import { TripPanelControl } from "./TripPanelControl";
-export const TripPanel = () => {
-	const [tripCards, setTripCards] = useState([]);
-
-	const handleClick = () => {
-		addEmptyTrip();
-	};
-
-	const addEmptyTrip = () => {
+export const TripPanel = ({ trips, setTrips, selectTrip }) => {
+	const handleAddTrip = () => {
 		const newTrip = {
-			TripName: "tripname",
-			FromDate: "from date",
-			ToDate: "to date",
-			Places: [],
+			name: "New trip",
+			places: [],
 		};
-		setTripCards([...tripCards, newTrip]);
+		setTrips([newTrip, ...trips]);
+		selectTrip(newTrip);
 	};
-
 	return (
 		<>
-			<TripPanelControl addTrip={handleClick} />
+			<TripPanelControl addTrip={handleAddTrip} />
 			{/* Used index because array of trips is not going to change */}
-			{tripCards.map((item, index) => [<TripCard key={index} />])}
+			{trips.map((trip, index) => [
+				<TripCard
+					key={index}
+					name={trip.name}
+					places={trip.places}
+					selectTrip={selectTrip}
+				/>,
+			])}
 		</>
 	);
 };

@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Box, Button, Typography, TextField } from "@mui/material";
 import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
 
-export const PlacePanelControl = (props) => {
-	const [tripName, setTripName] = useState("Test name here");
-	const [editTripName, setEditTripName] = useState(false);
+export const PlacePanelControl = ({ tripName, setTripName, addPlace }) => {
+	const [editName, setEditName] = useState(false);
 
 	return (
 		<>
@@ -17,13 +16,14 @@ export const PlacePanelControl = (props) => {
 				<Typography variant="h5" sx={{ flex: 1 }}>
 					Trip:
 				</Typography>
-				{editTripName ? (
+				{editName ? (
 					<TextField
 						hiddenLabel
 						size="small"
 						variant="filled"
+						value={tripName}
+						onChange={(event) => console.log(event.target.value)}
 						sx={{ flex: 6, maxHeight: 30 }}
-						onChange={(event) => setTripName(event.target.value)}
 					/>
 				) : (
 					<Typography variant="h5" sx={{ flex: 6 }}>
@@ -31,17 +31,17 @@ export const PlacePanelControl = (props) => {
 					</Typography>
 				)}
 				<Button
-					onClick={() => setEditTripName(!editTripName)}
+					onClick={() => setEditName(!editName)}
 					size="small"
 					variant="contained"
 					fullWidth={true}
 					sx={{ flex: 1, minWidth: 100, maxHeight: 30 }}
 				>
-					{editTripName ? "Save" : "Edit name"}
+					{editName ? "Save" : "Edit name"}
 				</Button>
 			</Box>
 			<Button
-				onClick={props.addPlace}
+				onClick={addPlace}
 				size="small"
 				variant="contained"
 				startIcon={<AddCircleSharpIcon />}

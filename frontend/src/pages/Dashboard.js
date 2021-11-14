@@ -6,16 +6,34 @@ import { TripPanel } from "../components/trip-panel/TripPanel";
 
 const Dashboard = () => {
 	const [trips, setTrips] = useState([]);
-	const [selectedTrip, setSelectedTrip] = useState({});
+	const [tripName, setTripName] = useState("");
 	const [places, setPlaces] = useState([]);
-	const [selectedPlace, setSelectedPlace] = useState({});
+	const [selectedTrip, setSelectedTrip] = useState({
+		name: "",
+		places: [],
+	});
+	const [selectedPlace, setSelectedPlace] = useState({
+		name: "",
+		type: "",
+	});
 
-	const selectTrip = (trip) => {
-		setSelectedTrip(trip);
+	const updatePlace = (place) => {
+		var index = places.findIndex((item) => (item.name = place.name));
+		var updatedPlaces = [...places];
+		updatedPlaces[index] = place;
+		setPlaces(updatedPlaces);
+		const updatedTrip = {
+			name: selectedTrip.name,
+			places: places,
+		};
+		updateTrip(updatedTrip);
 	};
 
-	const selectPlace = (place) => {
-		setSelectedPlace(place);
+	const updateTrip = (trip) => {
+		var index = trips.findIndex((item) => (item.name = trip.name));
+		var updatedTrips = [...trips];
+		updatedTrips[index] = trip;
+		setTrips(updatedTrips);
 	};
 
 	return (
@@ -29,7 +47,11 @@ const Dashboard = () => {
 					p: 4,
 				}}
 			>
-				<TripPanel trips={trips} setTrips={setTrips} selectTrip={selectTrip} />
+				<TripPanel
+					trips={trips}
+					setTrips={setTrips}
+					selectTrip={setSelectedTrip}
+				/>
 			</Grid>
 			<Grid
 				item
@@ -42,9 +64,12 @@ const Dashboard = () => {
 				}}
 			>
 				<PlacePanel
+					selectPlace={setSelectedPlace}
+					selectedTrip={selectedTrip}
 					places={places}
 					setPlaces={setPlaces}
-					selectPlace={selectPlace}
+					tripName={tripName}
+					setTripName={setTripName}
 				/>
 			</Grid>
 			<Grid
@@ -55,7 +80,10 @@ const Dashboard = () => {
 					py: 4,
 				}}
 			>
-				<PlaceDetailPanel />
+				<PlaceDetailPanel
+					selectedPlace={selectedPlace}
+					updatePlace={updatePlace}
+				/>
 			</Grid>
 		</Grid>
 	);

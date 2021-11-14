@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import { CityHeading } from "./CityHeading";
 import { PlaceCard } from "./PlaceCard";
 import { PlacePanelControl } from "./PlacePanelControl";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
-export const PlacePanel = ({ places, setPlaces, selectPlace }) => {
+export const PlacePanel = ({
+	selectPlace,
+	setPlaces,
+	places,
+	selectedTrip,
+	tripName,
+	setTripName,
+}) => {
 	const handleAddPlace = () => {
 		const newPlace = {
 			name: "Place",
@@ -13,24 +20,30 @@ export const PlacePanel = ({ places, setPlaces, selectPlace }) => {
 			to: Date.now(),
 			city: "City",
 		};
-
 		setPlaces([newPlace, ...places]);
+		selectPlace(newPlace);
 	};
 
-	return (
-		<>
-			<PlacePanelControl addPlace={handleAddPlace} />
-
-			{places.map((place) => (
-				<PlaceCard
-					key={place.id}
-					name={place.name}
-					from={place.from}
-					to={place.to}
-					type={place.type}
-					selectPlace={selectPlace}
+	if (selectedTrip)
+		return (
+			<>
+				<PlacePanelControl
+					tripName={tripName}
+					setTripName={setTripName}
+					addPlace={handleAddPlace}
 				/>
-			))}
-		</>
-	);
+
+				{places.map((place, index) => (
+					<PlaceCard
+						key={index}
+						name={place.name}
+						from={place.from}
+						to={place.to}
+						type={place.type}
+						selectPlace={selectPlace}
+					/>
+				))}
+			</>
+		);
+	else return <Typography>Create a new trip</Typography>;
 };
