@@ -3,8 +3,12 @@ import { Chip, Typography, Box } from "@mui/material";
 export const PlaceDetailView = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Box sx={{ backgroundColor: "red", height: "16rem", mb: 8 }}></Box>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Box
+        src="https://picsum.photos/600/300"
+        component="img"
+        sx={{ borderRadius: "16px" }}
+      />
+      <Box sx={{ display: "flex", alignItems: "center", mt: 4 }}>
         <Typography
           sx={{
             fontWeight: "medium",
