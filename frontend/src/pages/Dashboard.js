@@ -22,10 +22,13 @@ const Dashboard = () => {
     axiosBaseInstance
       .get("api/trips")
       .then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].places = [];
+        }
         setTrips(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 
@@ -37,6 +40,8 @@ const Dashboard = () => {
       ...selectedTrip,
       name: name,
     };
+    axiosBaseInstance.put(`api/trip/${trip.id}`, trip);
+    // console.log(trip);
     setSelectedTrip(trip);
     updateTripInTrips(trip);
   };
@@ -51,24 +56,24 @@ const Dashboard = () => {
   };
 
   const editSelectedPlace = (placeDetails) => {
-    console.log("test");
+    // console.log("test");
     const place = {
       ...selectedPlace,
       ...placeDetails,
     };
-    console.log(place);
+    // console.log(place);
     setSelectedPlace(place);
     savePlaceChanges(place);
   };
 
   const selectTrip = (trip) => {
     setSelectedTrip(trip);
-    console.log(trip);
+    // console.log(trip);
   };
 
   const selectPlace = (place) => {
     setSelectedPlace(place);
-    console.log(place);
+    // console.log(place);
   };
 
   const createTrip = () => {

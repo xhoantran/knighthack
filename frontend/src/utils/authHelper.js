@@ -11,6 +11,7 @@ export const AxiosLogin = (email, password) => {
       localStorage.setItem("refresh_token", res.data.refresh);
       axiosBaseInstance.defaults.headers["Authorization"] =
         "JWT " + localStorage.getItem("access_token");
+      window.location.href = "/";
     })
     .catch((error) => {
       console.log(error);
@@ -24,4 +25,5 @@ export const AxiosLogout = () => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
   axiosBaseInstance.defaults.headers["Authorization"] = null;
+  window.location.href = "/login/";
 };
