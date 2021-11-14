@@ -1,6 +1,6 @@
 import { Chip, Paper, Typography, Box } from "@mui/material";
 
-export const PlaceCard = ({ name, time, type }) => {
+export const PlaceCard = ({ name, from, to, type }) => {
   return (
     <Paper
       sx={{
@@ -14,7 +14,8 @@ export const PlaceCard = ({ name, time, type }) => {
       }}
     >
       <Box component="span" sx={{ flexGrow: 1 }}>
-        {time}
+        {from.getHours()}:{from.getMinutes()} - {to.getHours()}:
+        {to.getMinutes()}
         <Box component="span" sx={{ mx: 1, color: "#CBD5E0" }}>
           |
         </Box>

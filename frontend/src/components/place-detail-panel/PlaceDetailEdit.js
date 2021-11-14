@@ -12,10 +12,10 @@ import {
 export const PlaceDetailEdit = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column " }}>
-      <Box sx={{ backgroundColor: "red", height: "16rem", mb: 8 }}></Box>
+      <img src="https://picsum.photos/600/300" />
 
       {/* Name, Type */}
-      <Stack spacing={4}>
+      <Stack spacing={4} sx={{ mt: 4 }}>
         <Box sx={{ display: "flex" }}>
           <TextField
             label="Name"
