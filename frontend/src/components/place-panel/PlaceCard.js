@@ -1,6 +1,22 @@
 import { Chip, Paper, Typography, Box } from "@mui/material";
 
 export const PlaceCard = ({ name, from, to, type }) => {
+  const getColor = () => {
+    let color;
+    switch (Math.floor(Math.random() * 3)) {
+      case 0:
+        color = "primary";
+        break;
+      case 1:
+        color = "secondary";
+        break;
+      case 2:
+        color = "warning";
+        break;
+    }
+
+    return color;
+  };
   return (
     <Paper
       sx={{
@@ -24,7 +40,7 @@ export const PlaceCard = ({ name, from, to, type }) => {
 
       <Chip
         label={type}
-        color="primary"
+        color={getColor()}
         sx={{ textTransform: "uppercase" }}
         size="small"
       />

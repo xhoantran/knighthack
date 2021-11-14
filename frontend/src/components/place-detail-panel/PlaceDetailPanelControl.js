@@ -1,4 +1,5 @@
 import { Button, Box } from "@mui/material";
+import { ModeEdit, Delete, Save } from "@mui/icons-material";
 
 export const PlaceDetailPanelControl = ({ isEditable, setIsEditable }) => {
   const handleSave = () => {
@@ -9,17 +10,41 @@ export const PlaceDetailPanelControl = ({ isEditable, setIsEditable }) => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "flex-end", mt: "auto" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "flex-end",
+        height: "3rem",
+        mt: "auto",
+      }}
+    >
       {isEditable ? (
-        <Button variant="contained" sx={{ mr: 1 }} onClick={handleSave}>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{ mr: 2, width: "7rem" }}
+          onClick={handleSave}
+          startIcon={<Save />}
+        >
           Save
         </Button>
       ) : (
-        <Button variant="contained" sx={{ mr: 1 }} onClick={handleEdit}>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{ mr: 2, width: "7rem" }}
+          onClick={handleEdit}
+          startIcon={<ModeEdit />}
+        >
           Edit
         </Button>
       )}
-      <Button variant="contained" color="error">
+      <Button
+        variant="contained"
+        size="large"
+        color="error"
+        startIcon={<Delete />}
+      >
         Delete
       </Button>
     </Box>

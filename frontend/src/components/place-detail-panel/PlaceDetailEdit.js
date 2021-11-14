@@ -11,8 +11,12 @@ import {
 
 export const PlaceDetailEdit = () => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column " }}>
-      <img src="https://picsum.photos/600/300" />
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Box
+        src="https://picsum.photos/600/300"
+        component="img"
+        sx={{ borderRadius: "16px" }}
+      />
 
       {/* Name, Type */}
       <Stack spacing={4} sx={{ mt: 4 }}>

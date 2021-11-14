@@ -22,7 +22,7 @@ export const UserSettings = () => {
     setAnchorEl(null);
   };
   return (
-    <Box sx={{ height: "5rem" }}>
+    <Box sx={{ height: "5rem", mb: "5rem" }}>
       <Button
         onClick={handleClick}
         variant="contained"

@@ -47,6 +47,7 @@ const Dashboard = () => {
           px: 6,
           height: "100vh",
           overflow: "scroll",
+          backgroundColor: "#dbe2e9",
         }}
       >
         <PlacePanel

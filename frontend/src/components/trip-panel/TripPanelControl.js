@@ -10,9 +10,10 @@ export const TripPanelControl = (props) => {
         onClick={props.addTrip}
         size="small"
         variant="contained"
+        color="secondary"
         fullWidth={true}
         startIcon={<AddCircleSharpIcon />}
-        sx={{ mb: 1 }}
+        sx={{ mb: "1rem", height: "2.5rem" }}
       >
         New Trip
       </Button>
