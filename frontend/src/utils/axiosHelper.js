@@ -1,5 +1,4 @@
 import axios from "axios";
-import { notAuth } from "../actions/authActions";
 // eslint-disable-next-line
 
 const baseURL = "https://knighthack.herokuapp.com/";
