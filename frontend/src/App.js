@@ -27,8 +27,8 @@ export default function App() {
   return (
     <Routes>
       <Route exact path="/" element={<Login />} />
-      <Route path="/signup/" element={<SignUp />} />
-      <Route path="/dashboard/" element={<Dashboard />} />
+      <Route exact path="/signup" element={<SignUp />} />
+      <Route exact path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
