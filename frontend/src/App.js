@@ -22,5 +22,5 @@ function Copyright() {
 }
 
 export default function App() {
-  return <SignUp />;
+  return <Dashboard />;
 }
