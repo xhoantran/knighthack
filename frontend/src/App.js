@@ -8,19 +8,27 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 
+import { Routes, Route } from "react-router-dom";
+
 function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
+	return (
+		<Typography variant="body2" color="text.secondary" align="center">
+			{"Copyright © "}
+			<Link color="inherit" href="https://mui.com/">
+				Your Website
+			</Link>{" "}
+			{new Date().getFullYear()}
+			{"."}
+		</Typography>
+	);
 }
 
 export default function App() {
-  return <Dashboard />;
+	return (
+		<Routes>
+			<Route exact path="/" element={<Login />} />
+			<Route path="/signup" element={<SignUp />} />
+			<Route path="/dashboard" element={<Dashboard />} />
+		</Routes>
+	);
 }
