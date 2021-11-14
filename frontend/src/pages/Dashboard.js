@@ -30,6 +30,7 @@ const Dashboard = () => {
       .catch((err) => {
         // console.log(err);
       });
+    console.log(trips);
   }, []);
 
   const [tripCounter, setTripCounter] = useState(0);
@@ -40,10 +41,19 @@ const Dashboard = () => {
       ...selectedTrip,
       name: name,
     };
-    axiosBaseInstance.put(`api/trip/${trip.id}`, trip);
-    // console.log(trip);
     setSelectedTrip(trip);
     updateTripInTrips(trip);
+    axiosBaseInstance
+      .put(`api/trip/${trip.id}`, {
+        name: name,
+        locations: [],
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const setTripPlaces = (places) => {
@@ -68,20 +78,12 @@ const Dashboard = () => {
 
   const selectTrip = (trip) => {
     setSelectedTrip(trip);
-<<<<<<< HEAD
     // console.log(trip);
-=======
-    console.log(trip);
->>>>>>> 4a0dc8f785b0f7f920a9cc9328a6d435aeca4cf0
   };
 
   const selectPlace = (place) => {
     setSelectedPlace(place);
-<<<<<<< HEAD
     // console.log(place);
-=======
-    console.log(place);
->>>>>>> 4a0dc8f785b0f7f920a9cc9328a6d435aeca4cf0
   };
 
   const createTrip = () => {
