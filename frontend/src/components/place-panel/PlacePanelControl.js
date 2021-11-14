@@ -1,54 +1,69 @@
 import React, { useState } from "react";
 import { Box, Button, Typography, TextField } from "@mui/material";
-import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
+import { ModeEdit, AddCircleSharp } from "@mui/icons-material";
 
-export const PlacePanelControl = (props) => {
-	const [tripName, setTripName] = useState("Test name here");
+export const PlacePanelControl = ({ addPlace, tripName, updateTripName }) => {
 	const [editTripName, setEditTripName] = useState(false);
 
 	return (
-		<>
+		<Box>
 			<Box
 				sx={{
 					display: "flex",
-					p: 0.8,
+					alignItems: "center",
+					justifyContent: "space-between",
 				}}
 			>
-				<Typography variant="h5" sx={{ flex: 1 }}>
-					Trip:
-				</Typography>
-				{editTripName ? (
-					<TextField
-						hiddenLabel
-						size="small"
-						variant="filled"
-						sx={{ flex: 6, maxHeight: 30 }}
-						onChange={(event) => setTripName(event.target.value)}
-					/>
-				) : (
-					<Typography variant="h5" sx={{ flex: 6 }}>
-						{tripName}
-					</Typography>
-				)}
+				<Box sx={{ flexGrow: 1, mt: 1 }}>
+					{editTripName ? (
+						<TextField
+							hiddenLabel
+							size="small"
+							variant="filled"
+							fullWidth
+							sx={{ height: "3rem", width: "90%" }}
+							value={tripName}
+							onChange={(event) => updateTripName(event.target.value)}
+						/>
+					) : (
+						<Typography
+							sx={{
+								fontWeight: "medium",
+								fontSize: "2rem",
+								textTransform: "uppercase",
+								height: "3rem",
+							}}
+						>
+							{tripName}
+						</Typography>
+					)}
+				</Box>
 				<Button
 					onClick={() => setEditTripName(!editTripName)}
 					size="small"
 					variant="contained"
-					fullWidth={true}
-					sx={{ flex: 1, minWidth: 100, maxHeight: 30 }}
+					sx={{ width: "7rem", height: "2.5rem" }}
+					startIcon={<ModeEdit />}
 				>
-					{editTripName ? "Save" : "Edit name"}
+					{editTripName ? "Save" : "Edit"}
 				</Button>
 			</Box>
 			<Button
-				onClick={props.addPlace}
+				onClick={addPlace}
 				size="small"
 				variant="contained"
-				startIcon={<AddCircleSharpIcon />}
-				sx={{ marginY: 1 }}
+				color="secondary"
+				startIcon={<AddCircleSharp />}
+				sx={{
+					ml: 4,
+					mt: "6.5rem",
+					mb: "16px",
+					width: "240px",
+					height: "2.5rem",
+				}}
 			>
-				Add Place
+				Create Place
 			</Button>
-		</>
+		</Box>
 	);
 };
