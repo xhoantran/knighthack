@@ -11,7 +11,7 @@ export const AxiosLogin = (email, password) => {
       localStorage.setItem("refresh_token", res.data.refresh);
       axiosBaseInstance.defaults.headers["Authorization"] =
         "JWT " + localStorage.getItem("access_token");
-      window.location.href = "/";
+      window.location.href = "/dashboard";
     })
     .catch((error) => {
       console.log(error);
