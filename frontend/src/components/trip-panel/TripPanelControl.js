@@ -2,12 +2,12 @@ import { Box, Button } from "@mui/material";
 import { UserSettings } from "./UserSettings";
 import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
 
-export const TripPanelControl = (props) => {
+export const TripPanelControl = ({ addTrip }) => {
 	return (
 		<Box>
 			<UserSettings />
 			<Button
-				onClick={props.addTrip}
+				onClick={addTrip}
 				size="small"
 				variant="contained"
 				fullWidth={true}

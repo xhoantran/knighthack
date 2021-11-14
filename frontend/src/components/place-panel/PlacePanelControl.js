@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Typography, TextField } from "@mui/material";
 import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
 
-export const PlacePanelControl = (props) => {
-	const [tripName, setTripName] = useState("Test name here");
+export const PlacePanelControl = ({ addPlace, tripName, updateTripName }) => {
 	const [editTripName, setEditTripName] = useState(false);
 
 	return (
@@ -22,8 +21,9 @@ export const PlacePanelControl = (props) => {
 						hiddenLabel
 						size="small"
 						variant="filled"
+						value={tripName}
 						sx={{ flex: 6, maxHeight: 30 }}
-						onChange={(event) => setTripName(event.target.value)}
+						onChange={(event) => updateTripName(event.target.value)}
 					/>
 				) : (
 					<Typography variant="h5" sx={{ flex: 6 }}>
@@ -41,7 +41,7 @@ export const PlacePanelControl = (props) => {
 				</Button>
 			</Box>
 			<Button
-				onClick={props.addPlace}
+				onClick={addPlace}
 				size="small"
 				variant="contained"
 				startIcon={<AddCircleSharpIcon />}
