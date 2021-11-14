@@ -12,7 +12,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AxiosSignUp } from "../utils/authHelper";
+
+import { AxiosLogin } from "../utils/authHelper";
+import { axiosBaseInstance } from "../utils/axiosHelper";
 
 function Copyright(props) {
   return (
@@ -35,24 +37,42 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [formData, updateFormData] = React.useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
   const [loading, setLoading] = React.useState(false);
+  const [errorState, setErrorState] = React.useState({
+    email: null,
+    password: null,
+    firstName: null,
+    lastName: null,
+  });
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      first_name: data.get("firstName"),
-      last_name: data.get("lastName"),
-    });
-    AxiosSignUp(
-      data.get("email"),
-      data.get("password"),
-      data.get("firstName"),
-      data.get("lastName")
-    );
-    // setLoading(true);
+    console.log(formData);
+    setLoading(true);
+    axiosBaseInstance
+      .post(`api-auth/signup/`, {
+        email: formData.email,
+        password: formData.password,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+      })
+      .then((res) => {
+        AxiosLogin(formData.email, formData.password);
+      })
+      .catch((error) => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -89,7 +109,12 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={handleChange}
                   disabled={loading}
+                  error={errorState.firstName !== null}
+                  helperText={
+                    errorState.firstName !== null ? "Empty field!" : ""
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -100,6 +125,7 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={handleChange}
                   disabled={loading}
                 />
               </Grid>
@@ -111,6 +137,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
                   disabled={loading}
                 />
               </Grid>
@@ -123,6 +150,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
                   disabled={loading}
                 />
               </Grid>
